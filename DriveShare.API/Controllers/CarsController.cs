@@ -24,10 +24,11 @@ namespace DriveShare.API.Controllers
             [FromQuery] string? location, 
             [FromQuery] decimal? minPrice, 
             [FromQuery] decimal? maxPrice, 
+            [FromQuery] string? sortOrder,
             [FromQuery] int page = 1, 
             [FromQuery] int pageSize = 10)
         {
-            var response = await _carService.GetAllApprovedCarsAsync(brand, location, minPrice, maxPrice, page, pageSize);
+            var response = await _carService.GetAllApprovedCarsAsync(brand, location, minPrice, maxPrice, sortOrder, page, pageSize);
             return Ok(response);
         }
 

@@ -1,8 +1,8 @@
 import API from "./api";
 
 const carService = {
-  getAll: async () => {
-    const response = await API.get("/cars");
+  getAll: async (params = {}) => {
+    const response = await API.get("/cars", { params });
     return response.data;
   },
 

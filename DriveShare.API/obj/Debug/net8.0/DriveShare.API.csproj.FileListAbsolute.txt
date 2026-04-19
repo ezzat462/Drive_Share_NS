@@ -140,3 +140,4 @@ E:\DriveShare\DriveShare.API\obj\Debug\net8.0\refint\DriveShare.API.dll
 E:\DriveShare\DriveShare.API\obj\Debug\net8.0\DriveShare.API.pdb
 E:\DriveShare\DriveShare.API\obj\Debug\net8.0\DriveShare.API.genruntimeconfig.cache
 E:\DriveShare\DriveShare.API\obj\Debug\net8.0\ref\DriveShare.API.dll
+E:\DriveShare\DriveShare.API\obj\Debug\net8.0\DriveShare.API.sourcelink.json

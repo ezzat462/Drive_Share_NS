@@ -15,7 +15,7 @@ namespace DriveShare.API.Services
             _context = context;
         }
 
-        public async Task<ApiResponse<PaginatedResult<CarPost>>> GetAllApprovedCarsAsync(string? brand = null, string? location = null, decimal? minPrice = null, decimal? maxPrice = null, int page = 1, int pageSize = 10)
+        public async Task<ApiResponse<PaginatedResult<CarPost>>> GetAllApprovedCarsAsync(string? brand = null, string? location = null, decimal? minPrice = null, decimal? maxPrice = null, string? sortOrder = null, int page = 1, int pageSize = 10)
         {
             var query = _context.Cars
                 .Where(c => c.IsApproved)
@@ -36,8 +36,16 @@ namespace DriveShare.API.Services
 
             var totalItems = await query.CountAsync();
 
+            // Apply Sorting
+            query = sortOrder switch
+            {
+                "price_asc" => query.OrderBy(c => c.PricePerDay),
+                "price_desc" => query.OrderByDescending(c => c.PricePerDay),
+                "newest" => query.OrderByDescending(c => c.Id),
+                _ => query.OrderByDescending(c => c.Id) // Default sorting
+            };
+
             var items = await query
-                .OrderByDescending(c => c.Id)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
